@@ -18,7 +18,7 @@ At the moment you can only download videos from YouTube and albums from Bandcamp
 
 TODO:
 
-- Fix videos always downloading in very low quality.
+- ~~Fix videos always downloading in very low quality.~~
 - ~~Fix that you can't really select the download path when downloading from Bandcamp.~~
 - Download songs/lists from Soundcloud.
 - Download albums from Spotify
