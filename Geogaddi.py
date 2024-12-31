@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 from pytubefix import YouTube
 import subprocess
+import os
 
 # Programa hecho en Tkinter, llamado "Geogaddi" que busca poder descargar vídeos y audio de YouTube, álbumes de Bandcamp, y música de Soundcloud.
 # Autor: mentalapraxia
@@ -69,12 +70,19 @@ def download_bandcamp_album(url_entry):
     save_path = filedialog.askdirectory(title="Seleccionar carpeta de destino")
     if not save_path:
         return
-    
+
     try:
-        subprocess.run(["bandcamp-dl", "-d", save_path, url], check=True)
+        save_path = os.path.abspath(save_path)
+        subprocess.run(["bandcamp-dl", "--base-dir", save_path, url])
+
         messagebox.showinfo("Completado", "El álbum de Bandcamp ha sido descargado con éxito.")
-    except Exception as e:
+    except subprocess.CalledProcessError as e:
+        print("Error al ejecutar el comando:", e.stderr)
         messagebox.showerror("Error", f"Error al descargar el álbum de Bandcamp: {e}")
+    except Exception as e:
+        print("Error inesperado:", e)
+        messagebox.showerror("Error", f"Se produjo un error inesperado: {e}")
+
 
 # Propiedades de la ventana
 ventana = tk.Tk()
