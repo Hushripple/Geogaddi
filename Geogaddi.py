@@ -137,3 +137,4 @@ enable_dark_mode()
 
 # Loop principal
 ventana.mainloop()
+
