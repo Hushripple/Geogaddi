@@ -16,7 +16,7 @@ yt-dlp es necesario para poder descargar cosas de YouTube.
 
 - bandcamp-dl descarga las canciones a 128kbs, así que es recomendable utilizar la opción de descarga de la propia página de Bandcamp si se quiere descargar un álbum gratuito.
 - bandcamp-dl se encarga de todos los metadatos, tanto tags para los archivos mp3 como la portada del álbum.
-- yt-dlp utiliza el comando "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best", lo cual hace que SIEMPRE se descargue siempre el vídeo en la mejor calidad de vídeo y audio posible. Es de esperarse que los archivos puedan pesar mucho dependiendo de su duración y en su calidad máxima.
+- yt-dlp utiliza el comando "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best", lo cual hace que SIEMPRE se descargue el vídeo en la mejor calidad de vídeo y audio posible. Es de esperarse que los archivos puedan pesar mucho dependiendo de su duración y en su calidad máxima.
 
 # Futuro
 
