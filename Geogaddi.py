@@ -81,6 +81,7 @@ ventana = tk.Tk()
 ventana.title("Geogaddi")
 ventana.geometry("500x300")
 ventana.resizable(False, False)
+ventana.iconphoto(True, tk.PhotoImage(file="Projects/Tkinter/Geogaddi Code/geogaddi2.png"))
 
 # Crear notebook
 notebook = ttk.Notebook(ventana)
