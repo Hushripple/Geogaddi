@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
-from pytubefix import YouTube
 import subprocess
 import os
 
@@ -40,11 +39,11 @@ def bandcamp_tab_content(parent):
 
     return url_entry  
 
-# Lógica para descargar vídeos de YouTube con pytubefix
+# Lógica para descargar vídeos de YouTube con yt-dlp
 def download_video(url_entry):
     url = url_entry.get()
     if not url.strip():
-        messagebox.showerror("Error", "Por favor, introduce un enlace de YouTube.")
+        messagebox.showerror("Error," "Por favor, introduce un enlace de YouTube")
         return
 
     save_path = filedialog.askdirectory(title="Seleccionar carpeta de destino")
@@ -52,13 +51,16 @@ def download_video(url_entry):
         return
 
     try:
-        yt = YouTube(url)
-        stream = yt.streams.get_highest_resolution()
-        video_title = yt.title
-        stream.download(output_path=save_path)
-        messagebox.showinfo("Completado", f"El video '{video_title}' ha sido descargado con éxito.")
+        save_path = os.path.abspath(save_path)
+        subprocess.run(["yt-dlp", "-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best", "-P", save_path, url])
+
+        messagebox.showinfo("Completado", "El vídeo de YouTube ha sido descargado con éxito")
+    except subprocess.CompletedProcess as e:
+        print("Error al ejecutar el comando:", e.stderr)
+        messagebox.showerror("Error," f"Error al descargar el vídeo de YouTube: {e}")
     except Exception as e:
-        messagebox.showerror("Error", f"Error al descargar el video: {e}")
+        print("Error inesperado:", e)
+        messagebox.showerror("Error", f"Se produjo un error inesperado: {e}")
 
 # Lógica para descargar música de Bandcamp con bandcamp-dl
 def download_bandcamp_album(url_entry):
